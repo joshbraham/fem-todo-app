@@ -1,0 +1,383 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap");
+
+:root {
+	--clr-primary: hsl(220, 98%, 61%);
+	--grad-primary: linear-gradient(
+		to bottom right,
+		hsl(192, 100%, 67%),
+		hsl(280, 87%, 65%)
+	);
+
+	--clr-light-500: hsl(235, 19%, 35%);
+	--clr-light-400: hsl(236, 9%, 61%);
+	--clr-light-300: hsl(233, 11%, 84%);
+	--clr-light-200: hsl(236, 33%, 92%);
+	--clr-light-100: hsl(0, 0%, 98%);
+
+	--clr-dark-700: hsl(235, 21%, 11%);
+	--clr-dark-600: hsl(235, 24%, 19%);
+	--clr-dark-500: hsl(237, 14%, 26%);
+	--clr-dark-400: hsl(233, 14%, 35%);
+	--clr-dark-300: hsl(234, 11%, 52%);
+	--clr-dark-200: hsl(234, 39%, 85%);
+	--clr-dark-100: hsl(236, 33%, 92%);
+
+	--border-radius: 0.5rem;
+}
+
+button {
+	background: none;
+	border: none;
+	cursor: pointer;
+}
+
+body {
+	--color: var(--clr-dark-100);
+	--background: no-repeat url("../assets/bg-mobile-dark.jpg"),
+		var(--clr-dark-700);
+	/* Weights: 400, 700 */
+	font-family: "Josefin Sans", sans-serif;
+	font-size: 14px;
+	color: var(--color);
+	background: var(--background);
+}
+
+body.light {
+	--color: var(--clr-light-500);
+	--background: no-repeat url("../assets/bg-mobile-light.jpg"),
+		var(--clr-light-100);
+}
+
+@media (min-width: 376px) {
+	body {
+		--background: no-repeat url("../assets/bg-desktop-dark.jpg"),
+			var(--clr-dark-700);
+		font-size: 18px;
+	}
+
+	body.light {
+		--background: no-repeat url("../assets/bg-desktop-light.jpg"),
+			var(--clr-light-100);
+	}
+}
+
+header,
+main,
+footer {
+	max-width: 35rem;
+	margin: 0 auto;
+}
+
+header {
+	height: 6.5rem;
+	padding-inline: 1rem;
+	position: relative;
+}
+
+.header-container {
+	width: calc(100% - 2rem);
+	display: flex;
+	justify-content: space-between;
+	position: absolute;
+	top: 50%;
+}
+
+h1 {
+	color: var(--clr-light-100);
+	font-size: 28px;
+	line-height: 1;
+	letter-spacing: 12px;
+}
+
+@media (min-width: 376px) {
+	header {
+		height: 10rem;
+	}
+
+	h1 {
+		font-size: 36px;
+	}
+}
+
+main {
+	padding-inline: 1rem;
+	margin-bottom: 1rem;
+}
+
+.btn-theme {
+	width: 30px;
+	height: 30px;
+	transition: scale 150ms;
+}
+
+.btn-theme:hover {
+	scale: 1.1;
+}
+
+.btn-theme__text {
+	position: absolute;
+	opacity: 0;
+}
+
+.icon-theme {
+	width: 30px;
+	height: 30px;
+}
+
+.create-todo {
+	background-color: var(--clr-dark-600);
+	padding: 1rem 1.5rem;
+	border-radius: var(--border-radius);
+	margin-bottom: 1rem;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+.light .create-todo {
+	background-color: var(--clr-light-100);
+}
+
+.create-todo:focus-within {
+	outline: 2px solid var(--clr-primary);
+}
+
+.checkbox,
+.checkmark-container,
+.input-checkbox,
+.todo__checkmark {
+	width: 1.5rem;
+	height: 1.5rem;
+}
+
+.checkbox {
+	--clr-circle-edge: var(--clr-dark-500);
+	border: 2px solid var(--clr-circle-edge);
+	border-radius: 50%;
+}
+
+.light .checkbox {
+	--clr-circle-edge: var(--clr-light-300);
+}
+
+.todo-input {
+	flex: 1;
+	background: transparent;
+	border: none;
+	color: inherit;
+	outline: none;
+}
+
+.no-list-container {
+	height: var(--min-list-height);
+	width: 100%;
+	border: 1px dashed var(--clr-dark-300);
+	display: grid;
+	place-content: center;
+	border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.no-list {
+	color: var(--clr-dark-300);
+}
+
+.todo-list {
+	--min-list-height: 240px;
+	--clr-bg: var(--clr-dark-600);
+	min-height: var(--min-list-height);
+	background: var(--clr-bg);
+	border-radius: var(--border-radius) var(--border-radius) 0 0;
+	overflow: hidden;
+}
+
+.light .todo-list {
+	--clr-bg: var(--clr-light-100);
+}
+
+.todo {
+	--clr-border-top: var(--clr-dark-500);
+	--clr-checkmark-border: var(--clr-dark-500);
+	border-bottom: 1px solid var(--clr-border-top);
+	padding: 1rem 1.5rem;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	cursor: move;
+}
+
+.light .todo {
+	--clr-border-top: var(--clr-light-200);
+	--clr-checkmark-border: var(--clr-light-300);
+}
+
+.todo.dragging {
+	opacity: 0.3;
+}
+
+.btn-toggle-todo {
+	position: relative;
+}
+
+.input-checkbox {
+	position: absolute;
+	opacity: 0;
+	z-index: 2;
+	cursor: pointer;
+}
+
+.checkmark-container {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: var(--clr-checkmark-border);
+	border-radius: 50%;
+}
+
+.checkmark-container::after {
+	content: "";
+	position: absolute;
+	inset: 2px;
+	background: var(--clr-bg);
+	border-radius: inherit;
+}
+
+.input-checkbox:hover + .checkmark-container {
+	background: var(--grad-primary);
+}
+
+.input-checkbox:checked + .checkmark-container::after {
+	inset: 0;
+	background: var(--grad-primary);
+}
+
+.todo__checkmark {
+	width: 11px;
+	height: 9px;
+	position: relative;
+	z-index: 1;
+}
+
+.todo__title {
+	--clr-complete: var(--clr-dark-400);
+	position: relative;
+}
+
+.light .todo__title {
+	--clr-complete: var(--clr-light-300);
+}
+
+.todo__title.complete {
+	color: var(--clr-complete);
+	text-decoration: line-through;
+}
+
+.btn-delete-todo {
+	width: 18px;
+	height: 18px;
+	margin-left: auto;
+	display: none;
+}
+
+.todo:hover .btn-delete-todo {
+	display: revert;
+}
+
+/* .toolbar, */
+.todo-list {
+	--clr-shadow: var(--clr-dark-700);
+	box-shadow: 0 10px 30px var(--clr-shadow);
+}
+
+/* .light .toolbar, */
+.light .todo-list {
+	--clr-shadow: var(--clr-light-300);
+}
+
+.toolbar {
+	font-size: 14px;
+}
+
+.toolbar__top,
+.toolbar__bottom {
+	color: var(--clr-dark-300);
+	background: var(--clr-dark-600);
+	padding: 1rem 1.5rem 0.75rem;
+	display: flex;
+}
+
+.light .toolbar__top,
+.light .toolbar__bottom {
+	color: var(--clr-light-400);
+	background: var(--clr-light-100);
+}
+
+.toolbar__top {
+	justify-content: space-between;
+	margin-bottom: 1rem;
+	border-radius: 0 0 var(--border-radius) var(--border-radius);
+}
+
+.toolbar__bottom {
+	justify-content: center;
+	gap: 1.5rem;
+	border-radius: var(--border-radius);
+}
+
+@media (min-width: 560px) {
+	.toolbar {
+		position: relative;
+	}
+
+	.toolbar__bottom {
+		background: transparent;
+		position: absolute;
+		inset: 0 8rem;
+	}
+}
+
+.toolbar button {
+	color: inherit;
+}
+
+.btn-clear-todos,
+.btn-filter {
+	transition: 150ms ease-out;
+}
+
+.btn-filter {
+	font-weight: 700;
+}
+
+.btn-clear-todos:hover,
+.btn-filter:hover {
+	color: var(--clr-light-100);
+}
+
+.light .btn-clear-todos:hover,
+.light .btn-filter:hover {
+	color: var(--clr-light-500);
+}
+
+.btn-filter.active {
+	color: var(--clr-primary);
+}
+
+.tip-drag-drop {
+	font-size: 14px;
+	color: var(--clr-dark-400);
+	display: inline-block;
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+	margin-block: 1rem;
+}
+
+.attribution {
+	font-size: 11px;
+	text-align: center;
+}
+
+.attribution a {
+	color: hsl(228, 45%, 44%);
+}
