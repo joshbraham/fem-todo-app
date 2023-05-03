@@ -135,7 +135,7 @@ function App() {
 
 	return (
 		<>
-			<Header toggleTheme={toggleTheme} />
+			<Header theme={theme} toggleTheme={toggleTheme} />
 			<main role="main">
 				<CreateTodo
 					title={title}
